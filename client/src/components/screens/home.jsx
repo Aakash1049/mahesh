@@ -9,7 +9,7 @@ const Home = () =>{
         .then((res)=>{return res.json()})//http://localhost:5000/viewPosts
         .then((res)=>{
             setState(res.posts);console.log(res)})
-        .catch((err)=>{console.log(err)})
+        .catch((err)=>console.log(err))
         .finally();
         },[])
         return(
