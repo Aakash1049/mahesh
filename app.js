@@ -21,12 +21,7 @@ const connectDatabase =async()=>{
     }
 }
 connectDatabase();
-if (process.env.NODE_ENV === 'production') {
-    //*Set static folder up in production
-    app.use(express.static('client/build'));
 
-    app.get('*', (req,res) => res.sendFile(path.resolve(__dirname, 'client', 'build','index.html')));
-}
 console.log(db)
 console.log(process.env.JWT_SECRET)
 
@@ -49,6 +44,12 @@ require("./models/post");
 app.use(express.json());
 app.use(require("./routing/authentication"))
 app.use(require("./routing/post"))
+if (process.env.NODE_ENV === 'production') {
+    //*Set static folder up in production
+    app.use(express.static('client/build'));
+
+    app.get('*', (req,res) => res.sendFile(path.resolve(__dirname, 'client', 'build','index.html')));
+}
     
 app.get("/",(req,res)=>{
     res.send("i am from instaclone project!!!")
